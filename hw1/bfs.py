@@ -18,7 +18,6 @@ def goal(arr, num):
 
 
 def bfs(n):
-    print("Bfs")
     f = open(n + "_bfs_output.txt", 'w')
     num = int(n)
     arr = []
@@ -27,7 +26,7 @@ def bfs(n):
 
     while True:
         if len(queue) == 0 and a != 0:
-            print("There is no solution")
+            print("cfs result: There is no solution")
         test = queue.pop(0)
         a = 1
         if len(test) < num:
@@ -39,6 +38,7 @@ def bfs(n):
             if goal(test, num):
                 for i in range(num):
                     test[i] += 1
+                print("bfs result:", test)
                 f.write(str(test))
                 break
     f.close()

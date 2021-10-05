@@ -61,21 +61,26 @@ def h(arr, num):
 
 
 def hc(n):
-    print("Hc")
     num = int(n)
     f = open(n + "_hc_output.txt", 'w')
     arr = [random.randrange(0, num) for i in range(num)]
     pre_score = sys.maxsize
     preserve = arr[:]
+    count = 0
 
     while True:
+        count += +1
         arr = preserve[:]
         score, col, row = h(arr, num)
+        if count > 300:
+            print("hc result: There is no solution or too many iteration")
+            break
         if score == 0:
             preserve[col] = row
             for i in range(num):
                 preserve[i] += 1
             f.write(str(preserve))
+            print("hc resutl", preserve)
             break
         elif score > 0:
             if pre_score <= score:
