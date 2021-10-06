@@ -60,33 +60,32 @@ def h(arr, num):
     return min_score, min_col, min_row
 
 
+# 총 함수. arr 설정하고 답을 구하는 과정. 최소 score가 0이라면 정답.
 def hc(n):
     num = int(n)
     f = open(n + "_hc_output.txt", 'w')
     arr = [random.randrange(0, num) for i in range(num)]
     pre_score = sys.maxsize
-    preserve = arr[:]
     count = 0
 
     while True:
-        count += +1
-        arr = preserve[:]
         score, col, row = h(arr, num)
-        if count > 300:
-            print("hc result: There is no solution or too many iteration")
+        if count > 1000:
+            print("hc result: There is no solution or too many restart")
             break
         if score == 0:
-            preserve[col] = row
+            arr[col] = row
             for i in range(num):
-                preserve[i] += 1
-            f.write(str(preserve))
-            print("hc resutl", preserve)
+                arr[i] += 1
+            f.write(str(arr))
+            print("hc result: ", arr)
             break
         elif score > 0:
             if pre_score <= score:
-                preserve = [random.randrange(0, num) for i in range(num)]
+                count += 1
+                arr = [random.randrange(0, num) for i in range(num)]
                 pre_score = sys.maxsize
             elif pre_score > score:
                 pre_score = score
-                preserve[col] = row
+                arr[col] = row
     f.close()

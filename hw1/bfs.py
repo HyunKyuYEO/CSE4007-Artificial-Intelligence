@@ -1,34 +1,30 @@
 def goal(arr, num):
-    true = 1
     for i in range(num - 1):
         for j in range(i + 1, num, 1):
             # check if in same row
             if arr[i] == arr[j]:
-                true = 0
+                return False
             # check if in left up
             if (arr[i] - arr[j]) == i - j:
-                true = 0
+                return False
             # check if in left down
             if (arr[i] - arr[j]) == (j - i):
-                true = 0
-    if true == 0:
-        return False
-    else:
-        return True
+                return False
+    return True
 
 
+# queue 이용하여 bfs. child node(next column)으로 가능한 모든 row값들을 queue에 넣은다음 진행
 def bfs(n):
     f = open(n + "_bfs_output.txt", 'w')
     num = int(n)
     arr = []
     queue = [arr]
-    a = 0
 
     while True:
-        if len(queue) == 0 and a != 0:
-            print("cfs result: There is no solution")
+        if len(queue) == 0:
+            print("bfs result: There is no solution")
+            break
         test = queue.pop(0)
-        a = 1
         if len(test) < num:
             for j in range(num):
                 new = test[:]
