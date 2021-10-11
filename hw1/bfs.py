@@ -19,10 +19,13 @@ def bfs(n):
     num = int(n)
     arr = []
     queue = [arr]
+    count = 0
 
     while True:
+        count += 1
         if len(queue) == 0:
-            print("bfs result: There is no solution")
+            print(n, "bfs result: There is no solution")
+            f.write("no solution")
             break
         test = queue.pop(0)
         if len(test) < num:
@@ -34,7 +37,15 @@ def bfs(n):
             if goal(test, num):
                 for i in range(num):
                     test[i] += 1
+                    if i == num - 1:
+                        f.write(str(test[i]))
+                    else:
+                        f.write(str(test[i]))
+                        f.write(" ")
                 print("bfs result:", test)
-                f.write(str(test))
                 break
+        if count > 100000:
+            print("too many iteration")
+            f.write("cannot find solution, too many iteration")
+            break
     f.close()

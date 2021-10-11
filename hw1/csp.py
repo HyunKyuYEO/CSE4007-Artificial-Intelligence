@@ -52,8 +52,15 @@ def csp(n):
     arr = [sys.maxsize for i in range(num)]
     go_next_level(arr, 0, num)
     if count == 0:
-        f.write("There is no solution")
-        print("csp result: There is no solution")
+        f.write("no solution")
+        print(n, "csp result: There is no solution")
     if count > 0:
         print("csp result:", result)
-        f.write(str(result))
+        for i in range(num):
+            if i == num - 1:
+                f.write(str(result[i]))
+            else:
+                f.write(str(result[i]))
+                f.write(" ")
+
+    f.close()

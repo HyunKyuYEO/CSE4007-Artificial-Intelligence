@@ -71,13 +71,18 @@ def hc(n):
     while True:
         score, col, row = h(arr, num)
         if count > 1000:
-            print("hc result: There is no solution or too many restart")
+            print(n, "hc result: There is no solution or too many restart")
+            f.write("no solution")
             break
         if score == 0:
             arr[col] = row
             for i in range(num):
                 arr[i] += 1
-            f.write(str(arr))
+                if i == num - 1:
+                    f.write(str(arr[i]))
+                else:
+                    f.write(str(arr[i]))
+                    f.write(" ")
             print("hc result: ", arr)
             break
         elif score > 0:
