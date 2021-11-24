@@ -66,7 +66,7 @@ python3 main.py
 
 2. reward = 10
 
-![](./result/reward=10.png)
+   ![](./result/reward=10.png)
 
 3. reward = 20
 
