@@ -3,7 +3,7 @@ from enum import Enum
 
 gamma = 0.9
 actions = ['up', 'down', 'left', 'right']
-reward = 20
+reward = 1
 n = 5
 
 
@@ -12,7 +12,6 @@ def choose_action(cur_position):
     first = 1
     check = 1
     while True:
-        action = random.choice(actions)
         if first:
             # 맨 윗줄
             if cur_position < n:
@@ -27,6 +26,8 @@ def choose_action(cur_position):
             if cur_position % n == n - 1:
                 check *= 7
         first = 0
+
+        action = random.choice(actions)
         # 순서대로 맨 윗줄인데 위로 갈때, 맨 아랫줄인데 아래로 갈때, 맨 왼줄인데 왼으로 갈때, 맨 오른인데 오른쪽으로 갈때
         if check == 2 and action == 'up':
             continue
@@ -114,9 +115,10 @@ def find_path(score):
     f2.close()
 
 
-def queen(board):
+def q_learning(board):
     cur_position = 0
     score = [0 for i in range(25)]
+
     for i in range(25):
         score[i] = [0 for i in range(4)]
     k = 1
@@ -137,8 +139,9 @@ def main():
     for i in range(5):
         for j in range(5):
             board.append(c[i][j])
+
     f.close()
-    queen(board)
+    q_learning(board)
 
 
 main()
